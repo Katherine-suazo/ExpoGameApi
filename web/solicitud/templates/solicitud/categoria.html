@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center text-white mb-4">
+        <h1 class="display-4 fw-bold">Galería</h1>
+        <h3>{{ ctg }}</h3>
+        <!-- <p>Mejores momentos de nuestros jugadores</p> -->
+    </div>
+
+    <div class="row">
+        {% if gi %}
+        {% for o in gi %}
+        <div class="col-md-6 mb-4 d-flex justify-content-center">
+            <div class="card bg-dark text-white" style="width: 90%;">
+
+                {% if o.image %}
+                <img src="{{ o.image.url }}" class="card-img-top" alt="{{ o.title }}">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ o.title }}</h5>
+                    <p class="card-text text-start"><strong>{{ o.user}}</strong>: {{ o.description }}</p>
+                    <p class="text-start">{{ o.published|date:"SHORT_DATE_FORMAT" }}</p>
+
+                    <h5 class=>Comentarios: </h5>
+                    <ul class="text-start">
+                        {% for comment in o.comments.all %}
+                        <li><strong>{{ comment.author_name }}</strong>: {{ comment.text }}</li>
+                        {% empty %}
+                        <li>No hay comentarios</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-center text-white">No hay juegos disponibles en esta categoría.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

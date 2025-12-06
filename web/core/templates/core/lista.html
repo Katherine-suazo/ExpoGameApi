@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+
+<h1>Lista</h1>
+<hr>
+
+{% for p in posts %}
+
+<p>Nombre: {{ p.nombre }}</p>
+<p>Año: {{ p.año }}</p>
+<p>Genero: {{ p.genero }}</p>
+<p>User: {{ p.user }}</p>
+<hr>
+
+
+{% endfor %}
+
+
+
+{% endblock %}

@@ -1,0 +1,55 @@
+Luego de crear el proyecto, instalar:
+- pip install django_rest_framework
+- pip install requests
+- pip install response
+
+En setting installed app agregar appApi y rest_framework
+
+crear archivos en la app:
+- serializers.py
+- urls.py
+
+- modelos
+- serializar
+- views
+- urls
+
+
+http://127.0.0.1:8000/todos/api
+
+
+(recomendable tener la logica en una api, es mas escalable)
+
+Descargar la extencion Thunder Client
+- new Request en la extencion
+- pegamos la url del navegador
+- presionamos send
+
+- crear otro proyecto en la carpeta de escritorio (dos projectos en una carpeta)
+
+
+127.0.0.1:8000/ofertas  --> appConsumeOfertas
+127.0.0.1:8282  --> GET --> json ofertas
+
+- grupos/usuarios: 2 grupos / 5 usuarios
+- formulario de contacto mailTrap
+- consumir api(local)
+ 
+
+-------------------
+evaluacion:
+
+traer dos proyectos separados (uno con el sitio web y otra con la api)
+
+generar un formulario para registrar usuario y otro cliente
+el usuario en los dos casos debe ser staf()
+dependencia de permisos
+buscar: stackoverflow -> como asignar un usuario a un grupo django
+
+formulario de contacto
+mailTrap - tener una cuenta para usar
+busar: mailtrap -> send emails in django
+
+y usar api
+
+

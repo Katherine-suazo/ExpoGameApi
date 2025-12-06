@@ -1,0 +1,139 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="position-relative abajo">
+    <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+        <h1 class="display-4 fw-bold">Novedades</h1>
+    </div>
+</div>
+
+
+<!-- ------------------- -->
+
+
+<div id="myCarousel" class="carousel slide mb-6 login" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+
+        <div class="carousel-item active sombra">
+            <img src="https://media.pauta.cl/2025/02/PlayStation-6-1024x683.webp" class="d-block w-100" alt="play6"
+                style="height: 500px; object-fit: cover;">
+            <div class="container">
+                <div class="carousel-caption text-start">
+                    <h1>PlayStation 6</h1>
+                    <p class="opacity-75">
+                        Apostará por la unidad de disco extraíble y opcional desde su lanzamiento
+                        ofreciendo modelos digital o con lector incluido, en
+                        un diseño más simple que busca abaratar costes de producción y transporte.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item sombra">
+            <img src="https://img.asmedia.epimg.net/resizer/v2/7QSFOROFAFFR5M3GUGVVEVDA2A.jpg?auth=143f6cd2644632af600df4daa45a56318eeb68c1fdc7a0b325e50aeb15cfa043&width=1472&height=828&smart=true"
+                class="d-block w-100" alt="play6" style="height: 500px; object-fit: cover;">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Silksong es demasiado difícil</h1>
+                    <p>
+                        Al igual que ocurrió con Elden Ring, Dark Souls y cada juego popular y difícil, los jugadores
+                        debaten sobre si Hollow Knight Silksong tiene una dificultad desequilibrada y el clásico 'git
+                        gud'.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item sombra">
+            <img src="https://d1549tni64snpd.cloudfront.net/wp-content/uploads/2021/02/NMS_752x430.jpg"
+                class="d-block w-100" alt="play6" style="height: 500px; object-fit: cover;">
+            <div class="container">
+                <div class="carousel-caption text-end">
+                    <h1>No Man's Sky</h1>
+                    <p>
+                        La actualización Voyagers dispara No Man’s Sky hasta los 110.893 jugadores simultáneos en Steam,
+                        el mayor registro desde 2016, y Sean Murray celebra el logro destacando el esfuerzo del equipo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- ---------- CARD CONTENIDO --------- -->
+
+
+<div class="container my-4">
+    <div class="row g-4">
+
+        {% for n in novedad %}
+
+        <div class="col-md-6">
+            <div class="card h-100 login">
+
+                <img src="{{ n.imagen.url }}" alt="" class="card-img-top">
+                
+                <div class="card-body">
+                    <h3>{{ n.titulo }}</h3>
+                    <p class="card-text">{{ n.descripcion }}</p>
+                </div>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+<!-- ---------- PAGINACION --------- -->
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+
+    {% if novedad.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ novedad.previous_page_number }}" aria-label="Previous">
+          &laquo; Anterior
+        </a>
+      </li>
+    {% endif %}
+
+    <li class="page-item disabled">
+      <span class="page-link">
+        Página {{ novedad.number }} de {{ novedad.paginator.num_pages }}
+      </span>
+    </li>
+
+    {% if novedad.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ novedad.next_page_number }}" aria-label="Next">
+          Siguiente &raquo;
+        </a>
+      </li>
+    {% endif %}
+
+  </ul>
+</nav>
+
+
+{% endblock %}

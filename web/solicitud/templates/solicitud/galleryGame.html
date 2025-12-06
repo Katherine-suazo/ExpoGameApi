@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+<!-- ----------------- -->
+{% block gallery %}
+<div class="arriba">
+    <img src="https://i.pinimg.com/originals/23/3d/74/233d74f3fd24e51ed5e9dba0992fc868.gif" alt="">
+</div>
+{% endblock %}
+<!-- ----------------- -->
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center text-white mb-4">
+        <h1 class="display-4 fw-bold">Galería</h1>
+        <p>Mejores momentos de nuestros jugadores</p>
+    </div>
+
+    <div class="row">
+        {% if gi %}
+        {% for g in gi %}
+        <div class="col-md-6 mb-4 d-flex justify-content-center">
+            <div class="card bg-dark text-white shadow" style="width: 90%;">
+
+                {% if g.image %}
+                <img src="{{ g.image.url }}" class="card-img-top" alt="{{ g.title }}">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ g.title }}</h5>
+                    <p class="card-text text-start"><strong>{{ g.user }}</strong>: {{ g.description }}</p>
+                    <p class="text-start">{{ g.published|date:"SHORT_DATE_FORMAT" }}</p>
+
+                    <p>{% for c in g.categories.all %}
+                        <a href="{% url 'category' id_category=c.id %}" class="text-info "> {{ c.name }} </a>
+                        {% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    </p>
+
+                    <h5 class=>Comentarios: </h5>
+                    <ul class="text-start">
+                        {% for comment in g.comments.all %}
+                        <li><strong>{{ comment.author_name }}</strong>: {{ comment.text }}</li>
+                        {% empty %}
+                        <li>No hay comentarios</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-center text-white">Aún no hay imágenes publicadas.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
