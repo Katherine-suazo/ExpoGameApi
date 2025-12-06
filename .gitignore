@@ -29,3 +29,4 @@ Thumbs.db
 /cliente/__pycache__
 /pycache/*
 pycache/*
+migrations/*
